@@ -1,22 +1,19 @@
 #!/bin/bash
 
 ENCODER=264
-CRF=20
+INPUT=$1
+CRF=$2
 PRESET=slow
-INPUT="$@"
+
+#set defaults
+if [ "$CRF" == '' ]; then
+	CRF=23
+fi
+
 OUTPUT="/cygdrive/e/tmp/ffmpeg-output/$INPUT.$ENCODER.$CRF.mp4"
 DIR=$(dirname "$OUTPUT")
 OUTPUT_FILE=$(basename "$OUTPUT")
 OUTPUT_TMP=/tmp/$OUTPUT_FILE
-
-#echo $OUTPUT_FILE
-#exit;
-
-#echo ---------------------------------
-#echo INPUT = $INPUT
-#echo OUTPUT = $OUTPUT
-#echo DIR = $DIR
-
 
 mkdir -p "$DIR"
 
