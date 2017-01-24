@@ -1,13 +1,18 @@
 #!/bin/bash
 
-ENCODER=264
+#ENCODER=264
 INPUT=$1
 CRF=$2
-PRESET=slow
+ENCODER=$3
+PRESET=slower
 
 #set defaults
 if [ "$CRF" == '' ]; then
 	CRF=23
+fi
+
+if [ "$ENCODER" == '' ]; then
+	ENCODER=264
 fi
 
 OUTPUT="/cygdrive/e/tmp/ffmpeg-output/$INPUT.$ENCODER.$CRF.mp4"
