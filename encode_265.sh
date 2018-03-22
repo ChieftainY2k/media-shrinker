@@ -4,7 +4,7 @@
 INPUT=$1
 CRF=$2
 ENCODER=$3
-PRESET=slower
+PRESET=medium
 
 #set defaults
 if [ "$CRF" == '' ]; then
@@ -50,12 +50,12 @@ if [ ! -f "$OUTPUT" ]; then
 	#nice -n 20 /cygdrive/c/Program\ Files/ffmpeg/bin/ffmpeg.exe -y -i "$INPUT_WIN" -c:v libx264 -preset $PRESET -x264-params crf=$CRF -c:a aac -strict experimental -b:a 128k -f mp4 "$OUTPUT_TMP_WIN"
 	
 	#encode
-	nice -n 20 /cygdrive/c/Program\ Files/ffmpeg/bin/ffmpeg.exe \
+	nice -n 20 /cygdrive/c/Program\ Files/ffmpeg10bit/bin/ffmpeg.exe \
 	-y -i "$INPUT_WIN" \
 	-c:v libx$ENCODER \
 	-preset $PRESET \
 	-x$ENCODER-params "crf=$CRF" \
-	-pix_fmt yuv420p10 \
+	-pix_fmt yuv420p10le \
 	-c:a aac \
 	-strict experimental \
 	-b:a 128k \

@@ -53,6 +53,7 @@ if [ ! -f "$OUTPUT" ]; then
 	#nice -n 20 
 	pv "$INPUT" | /cygdrive/c/Program\ Files/ffmpeg/bin/ffmpeg.exe \
 	-y -i pipe:0 \
+	-pix_fmt yuv420p \
 	-analyzeduration 2G -probesize 2G \
 	-c:v libx$ENCODER \
 	-preset $PRESET \
