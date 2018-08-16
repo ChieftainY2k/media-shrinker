@@ -20,7 +20,13 @@ DIR=$(dirname "$OUTPUT")
 OUTPUT_FILE=$(basename "$OUTPUT")
 OUTPUT_TMP=/tmp/$OUTPUT_FILE
 
-mkdir -p "$DIR"
+REGEX_PATTERN='[.](264|265)[.][0-9]{2}[.]mp4$'
+if [[ "$INPUT" =~ $REGEX_PATTERN ]]
+then
+	echo "---------------------------------------------------------------------------------"
+	echo "[`date \"+%Y-%m-%d %H:%M:%S\"`] *** Input file is already converted, skipping $INPUT"
+	exit 
+fi
 
 if [ ! -f "$OUTPUT" ]; then
 
@@ -68,6 +74,13 @@ if [ ! -f "$OUTPUT" ]; then
 		unlink $OUTPUT_TMP
 		exit 255
 	fi		
+	
+	mkdir -p "$DIR"
+	EXITCODE=$?
+	if [ $EXITCODE -ne 0 ]; then
+		echo "[`date \"+%Y-%m-%d %H:%M:%S\"`] *** FATAL ERROR: Cannot create directory $DIR"
+		exit 255
+	fi
 	
 	mv "$OUTPUT_TMP" "$OUTPUT"
 	EXITCODE=$?

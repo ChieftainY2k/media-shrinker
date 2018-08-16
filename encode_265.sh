@@ -4,7 +4,7 @@
 INPUT=$1
 CRF=$2
 ENCODER=$3
-PRESET=medium
+PRESET=slow
 
 #set defaults
 if [ "$CRF" == '' ]; then
