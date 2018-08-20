@@ -24,7 +24,7 @@ REGEX_PATTERN='[.](264|265)[.][0-9]{2}[.]mp4$'
 if [[ "$INPUT" =~ $REGEX_PATTERN ]]
 then
 	echo "---------------------------------------------------------------------------------"
-	echo "[`date \"+%Y-%m-%d %H:%M:%S\"`] *** Input file is already converted, skipping $INPUT"
+	echo "[`date \"+%Y-%m-%d %H:%M:%S\"`] *** Input file $INPUT is already converted, skipping."
 	exit 
 fi
 
