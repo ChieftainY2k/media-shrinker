@@ -61,7 +61,8 @@ if [ ! -f "$DESTINATION_PATH" ]; then
 	#exit 255
 
 	#encode
-	nice -n 20 jpegoptim.exe --verbose --preserve --threshold=10 --strip-none --max=$QUALITY "$INPUT_PATH_WIN" --dest="$TMP_DIR_WIN"
+#	nice -n 20 jpegoptim.exe --verbose --preserve --threshold=10 --strip-none --max=$QUALITY "$INPUT_PATH_WIN" --dest="$TMP_DIR_WIN"
+	nice -n 20 jpegoptim.exe --verbose --preserve --threshold=7 --strip-none --max=$QUALITY "$INPUT_PATH_WIN" --dest="$TMP_DIR_WIN"
 
 	EXITCODE=$?
 	if [ $EXITCODE -ne 0 ]; then
