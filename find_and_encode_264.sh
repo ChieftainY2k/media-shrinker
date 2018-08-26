@@ -9,5 +9,5 @@ DATE=`date +%s`
 #/bin/find . -iname "*.mov" -print0 | xargs -0L1 sh -c "$DIR/params.sh \$0"
 
 #/bin/find . -iname "*.mov" -iname "*.mp4" -print0 | xargs -0L1 sh -c "$DIR/encode.sh \"\$0\""
-/bin/find . -iregex '.*[.]\(mp4\|mov\|ts\)$' -print0 | xargs -0L1 sh -c "$DIR/encode_264.sh \"\$0\" $1 $2"
+/bin/find . -iregex '.*[.]\(mp4\|mov\|3gp\|ts\)$' -print0 | xargs -0L1 sh -c "$DIR/encode_264.sh \"\$0\" $1 $2"
 
