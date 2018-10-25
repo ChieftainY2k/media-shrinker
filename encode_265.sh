@@ -15,7 +15,7 @@ if [ "$ENCODER" == '' ]; then
 	ENCODER=265
 fi
 
-OUTPUT="/cygdrive/e/tmp/ffmpeg-output/$INPUT.$ENCODER.$CRF.mp4"
+OUTPUT="/cygdrive/s/tmp/ffmpeg-output/$INPUT.$ENCODER.$CRF.mp4"
 DIR=$(dirname "$OUTPUT")
 OUTPUT_FILE=$(basename "$OUTPUT")
 OUTPUT_TMP=/tmp/$OUTPUT_FILE

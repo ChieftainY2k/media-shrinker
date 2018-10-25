@@ -9,7 +9,7 @@ if [ "$QUALITY" == '' ]; then
 	QUALITY=90
 fi
 
-DESTINATION_PATH="/cygdrive/e/tmp/image-output/$INPUT_PATH.q$QUALITY.jpg"
+DESTINATION_PATH="/cygdrive/s/tmp/image-output/$INPUT_PATH.q$QUALITY.jpg"
 DESTINATION_DIR=$(dirname "$DESTINATION_PATH")
 DESTINATION_FILENAME=$(basename "$DESTINATION_PATH")
 INPUT_FILENAME=$(basename "$INPUT_PATH")
