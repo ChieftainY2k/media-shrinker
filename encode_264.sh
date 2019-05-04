@@ -65,6 +65,7 @@ if [ ! -f "$OUTPUT" ]; then
 	-strict experimental \
 	-b:a 128k \
 	-f mp4 \
+	-max_muxing_queue_size 1024 \
 	"$OUTPUT_TMP_WIN"
 	
 	#check ffmpeg exit code
