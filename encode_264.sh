@@ -68,6 +68,26 @@ if [ ! -f "$OUTPUT" ]; then
 	-max_muxing_queue_size 1024 \
 	"$OUTPUT_TMP_WIN"
 	
+#	#encode and force FPS div by 4, no audio
+#	nice -n 20 /cygdrive/c/Program\ Files/ffmpeg/bin/ffmpeg.exe \
+#	-y -i "$INPUT_WIN" \
+#	-vf "setpts=4*PTS" \
+#	-an \
+#	-c:v libx$ENCODER \
+#	-preset $PRESET \
+#	-x$ENCODER-params "crf=$CRF" \
+#	-strict experimental \
+#	-f mp4 \
+#	-max_muxing_queue_size 1024 \
+#	"$OUTPUT_TMP_WIN"
+
+#	-filter_complex "[0:v]setpts=4*PTS[v];[0:a]atempo=0.5,atempo=0.5[a]" -map "[v]" -map "[a]" \
+#	-c:a aac \
+#	-b:a 128k \
+
+#	-vf "setpts=4*PTS" \
+#	-an \
+
 	#check ffmpeg exit code
 	EXITCODE=$?
 	if [ $EXITCODE -ne 0 ]; then

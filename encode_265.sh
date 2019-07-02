@@ -56,7 +56,7 @@ if [ ! -f "$OUTPUT" ]; then
 	#nice -n 20 /cygdrive/c/Program\ Files/ffmpeg/bin/ffmpeg.exe -y -i "$INPUT_WIN" -c:v libx264 -preset $PRESET -x264-params crf=$CRF -c:a aac -strict experimental -b:a 128k -f mp4 "$OUTPUT_TMP_WIN"
 	
 	#encode
-	nice -n 20 /cygdrive/c/Program\ Files/ffmpeg10bit/bin/ffmpeg.exe \
+	nice -n 20 /cygdrive/c/Program\ Files/ffmpeg/bin/ffmpeg.exe \
 	-y -i "$INPUT_WIN" \
 	-c:v libx$ENCODER \
 	-preset $PRESET \
@@ -67,6 +67,26 @@ if [ ! -f "$OUTPUT" ]; then
 	-b:a 128k \
 	-f mp4 \
 	"$OUTPUT_TMP_WIN"
+
+#	#encode and force FPS/4, no sound
+#	nice -n 20 /cygdrive/c/Program\ Files/ffmpeg/bin/ffmpeg.exe \
+#	-y -i "$INPUT_WIN" \
+#	-vf "setpts=4*PTS" \
+#	-an \
+#	-c:v libx$ENCODER \
+#	-preset $PRESET \
+#	-x$ENCODER-params "crf=$CRF" \
+#	-pix_fmt yuv420p10le \
+#	-strict experimental \
+#	-f mp4 \
+#	"$OUTPUT_TMP_WIN"
+
+#	-vf "setpts=4*PTS" \
+
+#	-filter_complex "[0:v]setpts=4*PTS[v];[0:a]atempo=4[a]" -map "[v]" -map "[a]" \
+#	-c:a aac \
+#	-b:a 128k \
+
 	
 	#check ffmpeg exit code
 	EXITCODE=$?
