@@ -7,18 +7,18 @@ ENCODER=$3
 PRESET=slower
 
 #set defaults
-if [ "$CRF" == '' ]; then
+if [[ "$CRF" == '' ]]; then
 	CRF=23
 fi
 
-if [ "$ENCODER" == '' ]; then
+if [[ "$ENCODER" == '' ]]; then
 	ENCODER=264
 fi
 
 OUTPUT="/cygdrive/s/tmp/ffmpeg-output/$INPUT.$ENCODER.$CRF.mp4"
 DIR=$(dirname "$OUTPUT")
 OUTPUT_FILE=$(basename "$OUTPUT")
-OUTPUT_TMP=/tmp/$OUTPUT_FILE
+OUTPUT_TMP=/tmp/${OUTPUT_FILE}
 
 REGEX_PATTERN='[.](264|265)[.][0-9]{2}[.]mp4$'
 if [[ "$INPUT" =~ $REGEX_PATTERN ]]
@@ -28,18 +28,18 @@ then
 	exit 
 fi
 
-if [ ! -f "$OUTPUT" ]; then
+if [[ ! -f "$OUTPUT" ]]; then
 
 	
-	echo -n cygpath -w \"$INPUT\" > /tmp/command.sh
+	echo -n cygpath -w \"${INPUT}\" > /tmp/command.sh
 	INPUT_WIN=`/tmp/command.sh`
 	#echo INPUT_WIN = $INPUT_WIN
 
-	echo -n cygpath -w \"$OUTPUT\" > /tmp/command.sh
+	echo -n cygpath -w \"${OUTPUT}\" > /tmp/command.sh
 	OUTPUT_WIN=`/tmp/command.sh`
 	#echo OUTPUT_WIN = $OUTPUT_WIN
 	
-	echo -n cygpath -w \"$OUTPUT_TMP\" > /tmp/command.sh
+	echo -n cygpath -w \"${OUTPUT_TMP}\" > /tmp/command.sh
 	OUTPUT_TMP_WIN=`/tmp/command.sh`
 	#echo OUTPUT_TMP_WIN = $OUTPUT_TMP_WIN
 	
@@ -73,9 +73,9 @@ if [ ! -f "$OUTPUT" ]; then
 #	-y -i "$INPUT_WIN" \
 #	-vf "setpts=4*PTS" \
 #	-an \
-#	-c:v libx$ENCODER \
-#	-preset $PRESET \
-#	-x$ENCODER-params "crf=$CRF" \
+#	-c:v libx${ENCODER} \
+#	-preset ${PRESET} \
+#	-x${ENCODER}-params "crf=$CRF" \
 #	-strict experimental \
 #	-f mp4 \
 #	-max_muxing_queue_size 1024 \
@@ -90,22 +90,22 @@ if [ ! -f "$OUTPUT" ]; then
 
 	#check ffmpeg exit code
 	EXITCODE=$?
-	if [ $EXITCODE -ne 0 ]; then
+	if [[ ${EXITCODE} -ne 0 ]]; then
 		echo "[`date \"+%Y-%m-%d %H:%M:%S\"`] *** FATAL ERROR: ffmpeg exit code is $EXITCODE, which means an error for file '$INPUT_WIN'"
-		unlink $OUTPUT_TMP
+		unlink ${OUTPUT_TMP}
 		exit 255
 	fi		
 	
 	mkdir -p "$DIR"
 	EXITCODE=$?
-	if [ $EXITCODE -ne 0 ]; then
+	if [[ ${EXITCODE} -ne 0 ]]; then
 		echo "[`date \"+%Y-%m-%d %H:%M:%S\"`] *** FATAL ERROR: Cannot create directory $DIR"
 		exit 255
 	fi
 	
 	mv "$OUTPUT_TMP" "$OUTPUT"
 	EXITCODE=$?
-	if [ $EXITCODE -ne 0 ]; then
+	if [[ ${EXITCODE} -ne 0 ]]; then
 		echo "[`date \"+%Y-%m-%d %H:%M:%S\"`] *** FATAL ERROR: Cannot move '$OUTPUT_TMP' to '$OUTPUT'"
 		exit 255
 	fi
