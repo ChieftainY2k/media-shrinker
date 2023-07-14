@@ -1,8 +1,10 @@
 #!/bin/bash
 
+set -e
+
 #ENCODER=264
 INPUT=$1
-CRF=$2
+CRF=$2  # lower values = better quality
 ENCODER=$3
 PRESET=slower
 
@@ -15,7 +17,7 @@ if [[ "$ENCODER" == '' ]]; then
 	ENCODER=264
 fi
 
-OUTPUT="/cygdrive/s/tmp/ffmpeg-output/$INPUT.$ENCODER.$CRF.mp4"
+OUTPUT="/cygdrive/c/tmp/ffmpeg-output/$INPUT.$ENCODER.$CRF.mp4"
 DIR=$(dirname "$OUTPUT")
 OUTPUT_FILE=$(basename "$OUTPUT")
 OUTPUT_TMP=/tmp/${OUTPUT_FILE}
@@ -32,6 +34,7 @@ if [[ ! -f "$OUTPUT" ]]; then
 
 	
 	echo -n cygpath -w \"${INPUT}\" > /tmp/command.sh
+	chmod +x /tmp/command.sh
 	INPUT_WIN=`/tmp/command.sh`
 	#echo INPUT_WIN = $INPUT_WIN
 
